@@ -1,8 +1,11 @@
 //const express = require('express');
 import express from 'express';
 import configViewEngine from './config/viewEngine';
-const app = express();
+import * as dotenv from 'dotenv';
+dotenv.config();
 
+const app = express();
+const port = process.env.PORT;
 configViewEngine(app);
 
 app.get('/', (req, res) => {
@@ -10,6 +13,6 @@ app.get('/', (req, res) => {
   res.render('home.ejs', { user });
 });
 
-app.listen(3000, () => {
-  console.log('Server started on port 3000');
+app.listen(port, () => {
+  console.log('Server started on port ', { port });
 });
